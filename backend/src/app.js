@@ -9,19 +9,16 @@ import { connectToSocket } from "./controllers/socketManager.js";
 import cors from "cors";
 import userRoutes from "./routes/users.routes.js";
 
-app.use(cors({
-  origin: 'https://apna-video-call-frontend-3iy5.onrender.com',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
-
 const app = express();
 const server = createServer(app);
 const io = connectToSocket(server);
 
 app.set("port",(process.env.PORT || 8000));
-app.use(cors());
+app.use(cors({
+  origin: 'https://apna-video-call-frontend-3iy5.onrender.com',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
+}));
 app.use(express.json({limit:"40kb"}));
 app.use(express.urlencoded({ extended: true, limit: "40kb" }));
 
