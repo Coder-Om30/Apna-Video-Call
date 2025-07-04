@@ -9,6 +9,13 @@ import { connectToSocket } from "./controllers/socketManager.js";
 import cors from "cors";
 import userRoutes from "./routes/users.routes.js";
 
+app.use(cors({
+  origin: 'https://apna-video-call-frontend-3iy5.onrender.com',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
+
 const app = express();
 const server = createServer(app);
 const io = connectToSocket(server);
